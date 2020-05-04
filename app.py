@@ -11,6 +11,9 @@ def clean_static(target_path):
 	for item in os.listdir(target_path):
 		if item.endswith('.png'):
 			os.remove(os.path.join(target_path, item))
+def clean_image_folder(target_path):
+	for item in os.listdir(target_path):
+		os.remove(os.path.join(target_path, item))
 
 
 def process_image(filename):
@@ -28,27 +31,29 @@ def process_image(filename):
 	image_file.save(dest)
 	return out_filename
 
-@app.route('/')
-def hello():
-	return render_template('index.html')
 
-@app.route('/upload', methods=['POST'])
-def upload():
-	target = os.path.join(APP_ROOT, 'images/')
-	print('TARGE: ', target)
 
-	if not os.path.isdir(target):
-		os.mkdir(target)
+@app.route('/index', methods=['GET','POST'])
+def index():
+	if request.method == "POST":
+		target = os.path.join(APP_ROOT, 'images/')
+		clean_image_folder(target)
+		print('TARGE: ', target)
 
-	f = request.files['file']
-	filename = f.filename 
-	destination = target+filename 
-	f.save(destination)
-	out_file = process_image(filename)
-	print('Processed_image; ', out_file)
-	## This to directly download the processed image
-	# return send_from_directory("outputs", processed_image, as_attachment=True)
-	return render_template('complete.html',out=out_file)
+		if not os.path.isdir(target):
+			os.mkdir(target)
+
+		f = request.files['file']
+		filename = f.filename 
+		destination = target+filename 
+		f.save(destination)
+		out_file = process_image(filename)
+		print('Processed_image; ', out_file)
+		## This to directly download the processed image
+		# return send_from_directory("outputs", processed_image, as_attachment=True)	
+		return render_template('complete.html',out=out_file)
+	else:
+		return render_template('index.html')
 
 
 
