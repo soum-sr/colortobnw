@@ -2,5 +2,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Files uploaded</h1>
+<h1>Output</h1>
+<img src="{{url_for('static',filename=out)}}">
+
  {% endblock %}
