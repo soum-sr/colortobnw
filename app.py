@@ -7,12 +7,18 @@ app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+def clean_static(target_path):
+	for item in os.listdir(target_path):
+		if item.endswith('.png'):
+			os.remove(os.path.join(target_path, item))
+
+
 def process_image(filename):
 	img_location = './images/' + filename
 	image_file = Image.open(img_location)
 	image_file = image_file.convert('1')
-	target_path = APP_ROOT + '/' + 'outputs'
-	print('TARGET: ', target_path)
+	target_path = APP_ROOT + '/' + 'static'
+	clean_static(target_path)
 	out_filename = filename.replace('.','_')
 	out_filename = out_filename + '_out.png'
 	if not os.path.isdir(target_path):
@@ -20,8 +26,7 @@ def process_image(filename):
 
 	dest = '/'.join([target_path,out_filename])
 	image_file.save(dest)
-	print("OUTPUT IMAGE: ", dest)
-	return 
+	return out_filename
 
 @app.route('/')
 def hello():
@@ -39,11 +44,11 @@ def upload():
 	filename = f.filename 
 	destination = target+filename 
 	f.save(destination)
-	processed_image = process_image(filename)
-	print("Destination: ", destination)
+	out_file = process_image(filename)
+	print('Processed_image; ', out_file)
 	## This to directly download the processed image
 	# return send_from_directory("outputs", processed_image, as_attachment=True)
-	return render_template('complete.html',out=filename)
+	return render_template('complete.html',out=out_file)
 
 
 
