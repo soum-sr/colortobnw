@@ -33,7 +33,7 @@ def process_image(filename):
 
 
 
-@app.route('/index', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def index():
 	if request.method == "POST":
 		target = os.path.join(APP_ROOT, 'images/')
