@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
 def clean_static(target_path):
 	for item in os.listdir(target_path):
 		if item.endswith('.png'):
@@ -49,8 +50,6 @@ def index():
 		f.save(destination)
 		out_file = process_image(filename)
 		print('Processed_image; ', out_file)
-		## This to directly download the processed image
-		# return send_from_directory("outputs", processed_image, as_attachment=True)	
 		return render_template('complete.html',out=out_file)
 	else:
 		return render_template('index.html')
