@@ -1,11 +1,15 @@
 
-
+body{
+	text-align: center;
+}
 
 .image-preview{
+	margin-left: 18%;
 	width:400px;
 	min-height: 200px;
 	border:2px solid grey;
 	margin-top:15px;
+	margin-bottom:25.3%;
 
 	/* Default Text */
 	display:flex;
@@ -21,11 +25,12 @@
 }
 
 .out_img{
-	padding-top: 15px;
+	margin-left: 18%;
 	width:400px;
 	min-height: 200px;
 	border:2px solid grey;
-	margin-top:15px;
+	margin-top:50px;
+	margin-bottom:30%;
 
 	/* Default Text */
 	display:flex;
