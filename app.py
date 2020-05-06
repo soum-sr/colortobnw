@@ -39,8 +39,6 @@ def index():
 	if request.method == "POST":
 		target = os.path.join(APP_ROOT, 'images/')
 		clean_image_folder(target)
-		print('TARGE: ', target)
-
 		if not os.path.isdir(target):
 			os.mkdir(target)
 
@@ -50,11 +48,9 @@ def index():
 		f.save(destination)
 		out_file = process_image(filename)
 		print('Processed_image; ', out_file)
-		return render_template('complete.html',out=out_file)
+		return render_template('index.html',out=out_file)
 	else:
 		return render_template('index.html')
-
-
 
 if __name__ == "__main__":
 	app.run(debug=True)

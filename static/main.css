@@ -1,3 +1,6 @@
+
+
+
 .image-preview{
 	width:400px;
 	min-height: 200px;
@@ -10,4 +13,27 @@
 	justify-content: center;
 	font-weight: bold;
 	color:#694d4d;
+}
+
+.image-preview__image{
+	display:none;
+	width:100%;
+}
+
+.out_img{
+	width:400px;
+	min-height: 200px;
+	border:2px solid grey;
+	margin-top:15px;
+
+	/* Default Text */
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color:#694d4d;
+}
+output_image{
+	display:none;
+	width:100%;
 }
