@@ -21,6 +21,7 @@
 }
 
 .out_img{
+	padding-top: 15px;
 	width:400px;
 	min-height: 200px;
 	border:2px solid grey;
