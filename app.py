@@ -37,6 +37,7 @@ def process_image(filename):
 @app.route('/', methods=['GET','POST'])
 def index():
 	if request.method == "POST":
+		print("REQUEST :", request)
 		target = os.path.join(APP_ROOT, 'images/')
 		clean_image_folder(target)
 		if not os.path.isdir(target):

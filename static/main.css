@@ -2,9 +2,7 @@
 body{
 	text-align: center;
 }
-.work-area{
 
-}
 .image-preview{
 	margin-left: 18%;
 	width:400px;
@@ -43,8 +41,4 @@ body{
 	justify-content: center;
 	font-weight: bold;
 	color:#694d4d;
-}
-output_image{
-	display:none;
-	width:100%;
 }

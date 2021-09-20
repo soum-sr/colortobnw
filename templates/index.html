@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>colortobnw</title>
   <meta charset="utf-8">
@@ -8,76 +9,25 @@
   <link rel="stylesheet" type="text/css" href="../static/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+
 </head>
+
 <body>
+    <h1 style="text-align: center;">colortobnw</h1>
+      <div style="background-color:lavender;">
+        <!-- UPLOAD SECTION -->
+        <h1>Input Section</h1>
+        <form id="upload-form" action="{{ url_for('index') }}" method="POST" , enctype="multipart/form-data">
+          <input type="file" name="file" id="file" accept="image/*">
+          <div class="image-preview" id="imagePreview">
+            <img src="" alt="Input Image" class="image-preview__image">
+            <span class="image-preview__default-text">Input Image</span>
+          </div>
+          <input class="convert_button" disabled="true" id="submit_input" type="submit" value="Convert">
+        </form>
 
-<div class="container-fluid">
-  <h1 style="text-align: center;">colortobnw</h1>
-  <div class="row work-area">
-
-    <div class="col-sm-6 input_section" style="background-color:lavender;">
-    <!-- UPLOAD SECTION -->
-      <h1>Input Section</h1>
-      <form id="upload-form" action="{{ url_for('index') }}" method="POST", enctype="multipart/form-data">
-        <input type="file" name="file" id="file" accept="image/*">
-        <div class="image-preview" id="imagePreview">
-          <img src="" alt="Input Image" class="image-preview__image">
-          <span class="image-preview__default-text">Input Image</span>
-        </div>
-        <input class="convert_button" disabled = "true" id="submit_input" type="submit" value="Convert">
-      </form>
-      
-    </div>
-
-
-    <div class="col-sm-6 output_section" style="background-color:lavenderblush;">
-    <!-- OUTPUT SECTION -->
-    <h1>Output Section</h1>
-    <div class="out_img">
-      <img src="..{{url_for('static',filename=out)}}" alt="Output Image" class="output_image">
-      <!-- <span class="output_image__default-text">Output Image</span> -->
-    </div>
-    <a href="..{{url_for('static',filename=out)}}" download><button class="convert_button" type="button"><i class="fa fa-download"></i>Download</button></a>
-    </div>
-  </div>
-</div>
-
-<script>
-  const inpFile = document.getElementById("file");
-  const previewContainer = document.getElementById("imagePreview");
-  const previewImage = previewContainer.querySelector(".image-preview__image");
-  const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-  const submitInput = document.getElementById("submit_input");
-
-  inpFile.addEventListener("change", function(){
-    const file = this.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      
-      // Change display properties
-      previewDefaultText.style.display = "none";
-      previewImage.style.display = "block";
-
-      reader.addEventListener("load", function(){
-        previewImage.setAttribute("src", this.result);
-      });
-      // Activate the submit button
-      submitInput.disabled = false;
-
-      reader.readAsDataURL(file);
-      
-    } 
-	else {
-      previewDefaultText.style.display = null;
-      previewImage.style.display = null;
-      previewImage.setAttribute("src", "");
-   }
-
-
-  });
-</script>
+      </div>
 
 </body>
+
 </html>
